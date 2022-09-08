@@ -1,0 +1,32 @@
+yum install docker -y
+service docker start
+service docker status
+
+echo "hello-world" > index.html
+
+vi Dockerfile
+
+FROM ubuntu:18.04
+RUN  apt-get update
+RUN  apt-get install -y apache2 curl net-tools
+COPY ./index.html /var/www/html/index.html
+ENTRYPOINT apachectl -D FOREGROUND
+EXPOSE 80
+
+docker build -t veeereshmantgi/jenkins .
+docker images
+
+docker run -it --name c1 veeereshmantgi/jenkins /bin/bash
+docker ps
+
+docker login
+veeereshmantgi
+Veer@1995
+
+docker push veeereshmantgi/jenkins
+
+docker rm -f c5
+
+docker rmi veeereshmantgi/jenkins
+
+docker run -itd -p 8081:80 --name c1 veeereshmantgi/jenkins
